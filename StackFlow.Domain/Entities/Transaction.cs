@@ -1,0 +1,26 @@
+using FluentValidator.Validation;
+using StackFlow.Shared.Entities;
+
+namespace StackFlow.Domain.Entities
+{
+  public class Transaction : Entity
+  {
+    public Transaction(DateTime date, int amount, Stock stock, ETransactionType transactionType)
+    {
+      Date = date;
+      Amount = amount;
+      Stock = stock;
+      TransactionType = transactionType;
+
+      AddNotifications(new ValidationContract()
+        .IsGreaterThan(Amount, 0, "Amount", "Invalid amount!")
+        .IsGreaterThan(Date, DateTime.Now, "Date", "Invalid transaction date!")
+      );
+    }
+
+    public DateTime Date { get; private set; }
+    public int Amount { get; private set; }
+    public Stock Stock { get; private set; }
+    public ETransactionType TransactionType { get; private set; }
+  }
+}

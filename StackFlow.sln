@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackFlow.Api", "StackFlow.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackFlow.Infra", "StackFlow.Infra\StackFlow.Infra.csproj", "{5BFDFA4F-A9B2-459D-9E11-D808A0E4AE85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackFlow.Shared", "StackFlow.Shared\StackFlow.Shared.csproj", "{7870255B-07A3-413C-B381-4A43041BCCA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{5BFDFA4F-A9B2-459D-9E11-D808A0E4AE85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BFDFA4F-A9B2-459D-9E11-D808A0E4AE85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BFDFA4F-A9B2-459D-9E11-D808A0E4AE85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7870255B-07A3-413C-B381-4A43041BCCA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7870255B-07A3-413C-B381-4A43041BCCA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7870255B-07A3-413C-B381-4A43041BCCA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7870255B-07A3-413C-B381-4A43041BCCA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
