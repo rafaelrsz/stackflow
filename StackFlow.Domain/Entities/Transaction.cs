@@ -11,6 +11,7 @@ namespace StackFlow.Domain.Entities
       Amount = amount;
       Stock = stock;
       TransactionType = transactionType;
+      TotalPrice = amount * stock.Price;
 
       AddNotifications(new ValidationContract()
         .IsGreaterThan(Amount, 0, "Amount", "Invalid amount!")
@@ -20,6 +21,7 @@ namespace StackFlow.Domain.Entities
 
     public DateTime Date { get; private set; }
     public int Amount { get; private set; }
+    public double TotalPrice { get; private set; }
     public Stock Stock { get; private set; }
     public ETransactionType TransactionType { get; private set; }
   }

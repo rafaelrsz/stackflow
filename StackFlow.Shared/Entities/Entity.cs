@@ -4,6 +4,10 @@ namespace StackFlow.Shared.Entities
 {
   public class Entity : Notifiable
   {
-    public Guid Id { get; private set; }
+    public Entity()
+    {
+      Id = Guid.NewGuid();
+    }
+    public Guid Id { get; protected set; }
   }
 }

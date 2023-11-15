@@ -7,12 +7,12 @@ namespace StackFlow.Domain.Entities
   public class User : Entity
   {
     private readonly IList<Transaction> _transactions;
-    public User(string name, Email email, string password, double availableBalance, Document document)
+    public User(string name, Email email, string password, Document document)
     {
       Name = name;
       Email = email;
       Password = password;
-      AvailableBalance = availableBalance;
+      AvailableBalance = 0;
       Document = document;
       _transactions = new List<Transaction>();
 

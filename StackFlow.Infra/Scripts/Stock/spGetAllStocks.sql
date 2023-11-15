@@ -1,0 +1,6 @@
+CREATE PROCEDURE spGetAllStocks
+AS
+BEGIN
+    SELECT *
+    FROM [Stock]
+END;

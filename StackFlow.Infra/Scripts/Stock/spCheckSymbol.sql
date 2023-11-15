@@ -1,0 +1,10 @@
+CREATE PROCEDURE spCheckSymbol
+	@Symbol VARCHAR(10)
+AS
+	SELECT CASE WHEN EXISTS (
+		SELECT [Id]
+		FROM [Stock]
+		WHERE [Symbol] = @Symbol
+	)
+	THEN CAST(1 AS BIT)
+	ELSE CAST(0 AS BIT) END

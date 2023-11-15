@@ -17,6 +17,7 @@ namespace StackFlow.Domain.Entities
       AddNotifications(new ValidationContract()
         .IsGreaterThan(Price, 0, "Price", "Invalid price!")
         .IsGreaterOrEqualsThan(AvailableQuantity, 0, "AvailableQuantity", "Invalid available quantity!")
+        .HasMaxLen(Symbol, 10, "Symbol", "Symbol must not have more than 10 characters!")
       );
     }
 

@@ -1,0 +1,8 @@
+CREATE PROCEDURE spGetStock
+    @Id UNIQUEIDENTIFIER
+AS
+BEGIN
+    SELECT *
+    FROM [Stock]
+    WHERE Id = @Id;
+END;
