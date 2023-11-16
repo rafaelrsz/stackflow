@@ -21,6 +21,16 @@ namespace StackFlow.Domain.Entities
       );
     }
 
+    public Stock(Guid id, string name, string symbol, double price, ESector sector, int availableQuantity)
+    {
+      Id = id;
+      Name = name;
+      Symbol = symbol;
+      Price = price;
+      Sector = sector;
+      AvailableQuantity = availableQuantity;
+    }
+
     public string Name { get; private set; }
     public string Symbol { get; private set; }
     public double Price { get; private set; }

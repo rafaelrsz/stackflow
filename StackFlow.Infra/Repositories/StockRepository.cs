@@ -86,18 +86,18 @@ namespace StackFlow.Infra.Repositories
     {
       _context
         .Connection
-        .Query<bool>(
+        .Query(
             "spUpdateStock",
             new
             {
               stock.Id,
+              stock.Name,
               stock.Price,
               stock.Sector,
               stock.AvailableQuantity,
               stock.Symbol
             },
-            commandType: CommandType.StoredProcedure)
-        .FirstOrDefault();
+            commandType: CommandType.StoredProcedure);
     }
 
     public bool ValidateExclusion(Guid id)

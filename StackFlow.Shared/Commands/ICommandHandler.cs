@@ -2,6 +2,6 @@ namespace StackFlow.Shared.Commands
 {
   public interface ICommandHandler<T> where T : ICommand
   {
-    ICommandResult? Handle(T Command);
+    ICommandResult? Handle(T command);
   }
 }

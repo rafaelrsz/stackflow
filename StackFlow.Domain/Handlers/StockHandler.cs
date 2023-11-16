@@ -7,7 +7,7 @@ using StackFlow.Shared.Commands;
 
 namespace StackFlow.Domain.Handlers
 {
-  public class StockHandler : Notifiable, ICommandHandler<CreateStockCommand>
+  public class StockHandler : Notifiable, ICommandHandler<CreateStockCommand>, ICommandHandler<UpdateStockCommand>
   {
     private readonly IStockRepository _repository;
     public StockHandler(IStockRepository repository)
@@ -52,6 +52,50 @@ namespace StackFlow.Domain.Handlers
             Notifications);
 
       _repository.Save(stock);
+
+      return new CommandResult(
+            true,
+            "Stock created successfully!",
+            Notifications,
+            stock.Id); ;
+    }
+
+    public ICommandResult? Handle(UpdateStockCommand command)
+    {
+      command.Validate();
+      AddNotifications(command.Notifications);
+
+      var entity = _repository.Get(command.Id);
+
+      if (entity.Id == Guid.Empty)
+      {
+        AddNotification("Id", "Stock not found");
+      }
+
+      if (Invalid)
+        return new CommandResult(
+            false,
+            "Please fix below ",
+            Notifications);
+
+      var stock = new Stock(
+                            entity.Id,
+                            command.Name,
+                            command.Symbol,
+                            command.Price,
+                            command.Sector,
+                            command.AvailableQuantity);
+
+
+      AddNotifications(stock.Notifications);
+
+      if (Invalid)
+        return new CommandResult(
+            false,
+            "Please correct the fields below:",
+            Notifications);
+
+      _repository.Update(stock);
 
       return new CommandResult(
             true,

@@ -61,5 +61,16 @@ namespace StackFlow.Api.Controllers
 
       return Ok(result.Id);
     }
+
+    [HttpPut]
+    public IActionResult Put([FromBody] UpdateStockCommand command)
+    {
+      var result = _handler.Handle(command) as CommandResult;
+
+      if (_handler.Invalid || result is null)
+        return BadRequest(_handler.Notifications);
+
+      return Ok(result.Id);
+    }
   }
 }
