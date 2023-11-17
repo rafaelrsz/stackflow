@@ -21,6 +21,7 @@ CREATE TABLE [Transaction](
   [Transactiontype] INT NOT NULL,
   [TotalPrice] MONEY NOT NULL,
   [StockId] UNIQUEIDENTIFIER NOT NULL FOREIGN KEY([StockId]) REFERENCES [Stock]([Id]),
+  [UserId] UNIQUEIDENTIFIER NOT NULL FOREIGN KEY([UserId]) REFERENCES [User]([Id]),
 )
 
 CREATE TABLE [User_Transaction](

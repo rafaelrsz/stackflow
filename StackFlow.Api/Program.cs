@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Identity;
 using StackFlow.Domain.Handlers;
 using StackFlow.Domain.Repositories;
+using StackFlow.Domain.Utils;
 using StackFlow.Infra.DataContexts;
 using StackFlow.Infra.Repositories;
+using StackFlow.Infra.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +18,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<StackFlowDataContext, StackFlowDataContext>();
+
 builder.Services.AddTransient<IStockRepository, StockRepository>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+
 builder.Services.AddTransient<StockHandler, StockHandler>();
+builder.Services.AddTransient<UserHandler, UserHandler>();
+
+builder.Services.AddTransient<IPasswordHasher, PasswordHasher>();
 
 var app = builder.Build();
 app.UseCors(o =>

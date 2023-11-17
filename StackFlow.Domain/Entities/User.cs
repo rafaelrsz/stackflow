@@ -1,4 +1,5 @@
 using FluentValidator.Validation;
+using StackFlow.Domain.Enums;
 using StackFlow.Domain.ValueObjects;
 using StackFlow.Shared.Entities;
 
@@ -7,26 +8,37 @@ namespace StackFlow.Domain.Entities
   public class User : Entity
   {
     private readonly IList<Transaction> _transactions;
-    public User(string name, Email email, string password, Document document)
+    public User(string name, string password, Document document, ERole role)
     {
       Name = name;
-      Email = email;
       Password = password;
       AvailableBalance = 0;
       Document = document;
       _transactions = new List<Transaction>();
+      Role = role;
 
       AddNotifications(new ValidationContract()
         .HasMinLen(Name, 5, "Name", "Name must have at least 5 characters!")
       );
     }
 
+    public User(Guid id, string name, string password, Document document, ERole role)
+    {
+      Id = id;
+      Name = name;
+      Password = password;
+      AvailableBalance = 0;
+      Document = document;
+      _transactions = new List<Transaction>();
+      Role = role;
+    }
+
     public string Name { get; private set; }
-    public Email Email { get; private set; }
     public string Password { get; private set; }
     public double AvailableBalance { get; private set; }
     public Document Document { get; private set; }
     public IReadOnlyCollection<Transaction> Transactions => _transactions.ToArray();
+    public ERole Role { get; private set; }
 
     public void BuyStock(Transaction transaction)
     {
