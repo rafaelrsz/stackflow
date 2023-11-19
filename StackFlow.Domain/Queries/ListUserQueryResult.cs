@@ -8,6 +8,7 @@ namespace StackFlow.Domain.Queries
   {
     public Guid Id { get; set; }
     public string Name { get; set; } = "";
+    public string Password { get; set; } = "";
     public double AvailableBalance { get; set; }
     public string Document { get; set; } = "";
     [JsonConverter(typeof(JsonStringEnumConverter))]

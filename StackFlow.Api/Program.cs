@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Identity;
+using StackFlow.Api.Data;
+using StackFlow.Domain.Entities;
 using StackFlow.Domain.Handlers;
 using StackFlow.Domain.Repositories;
 using StackFlow.Domain.Utils;
 using StackFlow.Infra.DataContexts;
 using StackFlow.Infra.Repositories;
 using StackFlow.Infra.Utils;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +29,7 @@ builder.Services.AddTransient<StockHandler, StockHandler>();
 builder.Services.AddTransient<UserHandler, UserHandler>();
 
 builder.Services.AddTransient<IPasswordHasher, PasswordHasher>();
+
 
 var app = builder.Build();
 app.UseCors(o =>

@@ -5,9 +5,9 @@ namespace StackFlow.Domain.Entities
 {
   public class Transaction : Entity
   {
-    public Transaction(DateTime date, int amount, Stock stock, ETransactionType transactionType)
+    public Transaction(int amount, Stock stock, ETransactionType transactionType)
     {
-      Date = date;
+      Date = DateTime.Now;
       Amount = amount;
       Stock = stock;
       TransactionType = transactionType;

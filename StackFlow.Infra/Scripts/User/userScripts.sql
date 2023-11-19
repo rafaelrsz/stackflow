@@ -93,6 +93,20 @@ BEGIN
 END;
 GO
 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[spGetUserByDocument]
+    @Document UNIQUEIDENTIFIER
+AS
+BEGIN
+    SELECT *
+    FROM [User]
+    WHERE Id = @Document;
+END;
+GO
+
 /****** Object:  StoredProcedure [dbo].[spUpdateUser]    Script Date: 16/11/2023 20:44:29 ******/
 SET ANSI_NULLS ON
 GO

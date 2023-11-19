@@ -10,7 +10,10 @@ using StackFlow.Shared.Commands;
 
 namespace StackFlow.Domain.Handlers
 {
-  public class UserHandler : Notifiable, ICommandHandler<CreateUserCommand>, ICommandHandler<UpdateUserCommand>
+  public class UserHandler : Notifiable,
+   ICommandHandler<CreateUserCommand>,
+   ICommandHandler<UpdateUserCommand>,
+   ICommandHandler<UserLoginCommand>
   {
     private readonly IUserRepository _repository;
     private readonly IPasswordHasher _hasher;
@@ -114,6 +117,42 @@ namespace StackFlow.Domain.Handlers
         Notifications,
         user.Id
       );
+    }
+
+    public ICommandResult? Handle(UserLoginCommand command)
+    {
+      var user = _repository.GetByDocument(command.Document);
+
+      if (user == null)
+        AddNotification("User", "User not found!");
+
+      if (Invalid)
+        return new CommandResult(
+          false,
+          "User not found!",
+          Notifications,
+          Guid.NewGuid()
+        );
+
+      var match = _hasher.Verify(user!.Password, command.Password);
+
+      if (!match)
+        AddNotification("Password", "Wrong password!");
+
+      if (Invalid)
+        return new CommandResult(
+        false,
+        "User not found!",
+        Notifications,
+        user!.Id
+        );
+
+      return new CommandResult(
+      match,
+      "User logged in!",
+      Notifications,
+      user.Id
+    );
     }
   }
 }

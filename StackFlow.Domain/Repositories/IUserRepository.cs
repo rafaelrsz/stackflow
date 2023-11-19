@@ -7,6 +7,7 @@ namespace StackFlow.Domain.Repositories
   {
     bool CheckDocument(string document);
     ListUserQueryResult Get(Guid id);
+    User? GetByDocument(string document);
     User? GetFullUser(Guid id);
     IEnumerable<ListUserQueryResult> Get();
     void Save(User user);

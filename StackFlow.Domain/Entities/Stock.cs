@@ -1,5 +1,6 @@
 using FluentValidator.Validation;
 using StackFlow.Domain.Enums;
+using StackFlow.Domain.Queries;
 using StackFlow.Shared.Entities;
 
 namespace StackFlow.Domain.Entities
@@ -29,6 +30,16 @@ namespace StackFlow.Domain.Entities
       Price = price;
       Sector = sector;
       AvailableQuantity = availableQuantity;
+    }
+
+    public Stock(ListStockQueryResult result)
+    {
+      Name = result.Name;
+      Symbol = result.Symbol;
+      Price = result.Price;
+      Sector = result.Sector;
+      AvailableQuantity = result.AvailableQuantity;
+      Id = result.Id;
     }
 
     public string Name { get; private set; }

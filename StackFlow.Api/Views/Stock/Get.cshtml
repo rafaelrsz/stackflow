@@ -1,0 +1,70 @@
+@model IEnumerable<StackFlow.Domain.Queries.ListStockQueryResult>
+
+@{
+  ViewBag.Title = "Ações";
+  Layout = "_Layout";
+}
+
+</br>
+</br>
+<h2>Ações</h2>
+
+@* <p>
+@Html.ActionLink("Create New", "Create")
+</p> *@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<table class="table">
+  <tr>
+    <th scope="col">
+      @Html.DisplayNameFor(model => model.Name)
+    </th>
+    <th scope="col">
+      @Html.DisplayNameFor(model => model.Symbol)
+    </th>
+    <th scope="col">
+      @Html.DisplayNameFor(model => model.Price)
+    </th>
+    <th scope="col">
+      @Html.DisplayNameFor(model => model.Sector)
+    </th>
+    <th scope="col">
+      @Html.DisplayNameFor(model => model.AvailableQuantity)
+    </th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr scope="row">
+      <td>
+        @Html.DisplayFor(modelItem => item.Name)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Symbol)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Price)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Sector)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.AvailableQuantity)
+      </td>
+      <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+      </td>
+    </tr>
+  }
+
+</table>

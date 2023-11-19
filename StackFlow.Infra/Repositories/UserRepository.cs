@@ -60,6 +60,17 @@ namespace StackFlow.Infra.Repositories
             commandType: CommandType.StoredProcedure);
     }
 
+    public User? GetByDocument(string document)
+    {
+      return
+      _context
+        .Connection
+        .Query<User>(
+            "spGetUserByDocument",
+            new { document },
+            commandType: CommandType.StoredProcedure).FirstOrDefault();
+    }
+
     public User? GetFullUser(Guid id)
     {
       return

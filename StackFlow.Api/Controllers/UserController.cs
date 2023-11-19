@@ -70,5 +70,33 @@ namespace StackFlow.Api.Controllers
 
       return Ok(result.Id);
     }
+
+    [HttpGet]
+    [Route("/login")]
+    public IActionResult Login() => View();
+    [Route("/login")]
+
+    public IActionResult Login(UserLoginCommand command)
+    {
+      if (String.IsNullOrEmpty(command.Document) || string.IsNullOrEmpty(command.Password))
+      {
+        ViewBag.Success = false;
+        return View();
+      }
+      else
+      {
+        var result = _handler.Handle(command) as CommandResult;
+        if (result!.Success)
+        {
+          ViewBag.Success = true;
+          return RedirectToAction("Get", "Stock");
+        }
+        else
+        {
+          ViewBag.Success = false;
+          return View();
+        }
+      }
+    }
   }
 }

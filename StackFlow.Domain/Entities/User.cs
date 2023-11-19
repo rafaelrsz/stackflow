@@ -2,6 +2,8 @@ using FluentValidator.Validation;
 using StackFlow.Domain.Enums;
 using StackFlow.Domain.ValueObjects;
 using StackFlow.Shared.Entities;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace StackFlow.Domain.Entities
 {
@@ -22,15 +24,15 @@ namespace StackFlow.Domain.Entities
       );
     }
 
-    public User(Guid id, string name, string password, Document document, ERole role)
+    public User(Guid id, string name, string password, decimal availableBalance, string document, int role)
     {
       Id = id;
       Name = name;
       Password = password;
-      AvailableBalance = 0;
-      Document = document;
+      AvailableBalance = (double)availableBalance;
+      Document = new Document(document);
       _transactions = new List<Transaction>();
-      Role = role;
+      Role = (ERole)role;
     }
 
     public string Name { get; private set; }
