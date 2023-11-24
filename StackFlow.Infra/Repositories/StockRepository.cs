@@ -63,6 +63,28 @@ namespace StackFlow.Infra.Repositories
             commandType: CommandType.StoredProcedure);
     }
 
+    public IEnumerable<ListStockQueryResult> GetByUser(Guid userId)
+    {
+      return
+      _context
+        .Connection
+        .Query<ListStockQueryResult>(
+            "spGetStocksByUser",
+            new { userId },
+            commandType: CommandType.StoredProcedure);
+    }
+
+    public Stock? GetFullStock(Guid id)
+    {
+      return
+      _context
+        .Connection
+        .QueryFirstOrDefault<Stock>(
+            "spGetStock"
+            , new { id },
+            commandType: CommandType.StoredProcedure);
+    }
+
     public void Save(Stock stock)
     {
       _context

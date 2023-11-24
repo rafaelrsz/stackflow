@@ -31,6 +31,15 @@ namespace StackFlow.Domain.Entities
       Sector = sector;
       AvailableQuantity = availableQuantity;
     }
+    public Stock(Guid id, string name, string symbol, decimal price, int sector, decimal availableQuantity)
+    {
+      Id = id;
+      Name = name;
+      Symbol = symbol;
+      Price = (double)price;
+      Sector = (ESector)sector;
+      AvailableQuantity = (int)availableQuantity;
+    }
 
     public Stock(ListStockQueryResult result)
     {
@@ -46,6 +55,6 @@ namespace StackFlow.Domain.Entities
     public string Symbol { get; private set; }
     public double Price { get; private set; }
     public ESector Sector { get; private set; }
-    public int AvailableQuantity { get; private set; }
+    public int AvailableQuantity { get; set; }
   }
 }

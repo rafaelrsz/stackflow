@@ -1,0 +1,80 @@
+@model IEnumerable<StackFlow.Domain.Queries.ListUserQueryResult>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+  ViewBag.Title = "Ações";
+  Layout = "_Layout";
+}
+
+</br>
+</br>
+<h2>Usuários</h2>
+
+@* <p>
+@Html.ActionLink("Create New", "Create")
+</p> *@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+@if (Model.Count() > 0)
+{
+  <main class="container">
+    <table class="table table-striped table-light table-sm table-hover">
+      <thead class="bg-dark text-white">
+        <tr>
+          <th>
+            @Html.DisplayNameFor(model => model.Name)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Document)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.AvailableBalance)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Role)
+          </th>
+          <th class="text-center">
+            <a href="/register" class="btn btn-sm btn-success">
+              <i class="fa-solid fa-plus"></i> Novo usuário
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var item in Model)
+        {
+          <tr class="table">
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>@Html.DisplayFor(modelItem => item.Document)</td>
+            <td>@Html.DisplayFor(modelItem => item.AvailableBalance)</td>
+            <td>@Html.DisplayFor(modelItem => item.Role)</td>
+            <td class="text-center">
+              <form asp-action="Delete" asp-route-id="@item.Id">
+                <div class="btn-group btn-group-sm">
+                  <a asp-action="update" asp-route-id="@item.Id" class="btn btn-warning">
+                    Editar
+                  </a>
+                  <div class="btn-group btn-group-sm">
+                    <button type="submit" class="btn btn-danger"
+                      onclick="return confirm('Are you sure to delete this record?')">
+                      Excluir
+                    </button>
+                  </div>
+              </form>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </main>
+}
+else
+{
+  <h2>Não há usuários cadastrados.</h2>
+}

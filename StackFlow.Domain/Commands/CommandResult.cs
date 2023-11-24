@@ -19,10 +19,19 @@ namespace StackFlow.Domain.Commands
       Notifications = notifications;
       Id = id;
     }
+    public CommandResult(bool success, string message, IReadOnlyCollection<Notification> notifications, Guid id, object entity)
+    {
+      Success = success;
+      Message = message;
+      Notifications = notifications;
+      Id = id;
+      Entity = entity;
+    }
 
     public bool Success { get; set; }
     public string Message { get; set; }
     public IReadOnlyCollection<Notification> Notifications { get; set; }
     public Guid Id { get; set; }
+    public object? Entity { get; set; } = null;
   }
 }

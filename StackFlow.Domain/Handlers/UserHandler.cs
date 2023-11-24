@@ -49,7 +49,7 @@ namespace StackFlow.Domain.Handlers
       var user = new User(command.Name,
                           _hasher.Hash(command.Password),
                           document,
-                          command.Role);
+                          ERole.Normal);
 
       AddNotifications(document.Notifications);
       AddNotifications(user.Notifications);
@@ -151,7 +151,8 @@ namespace StackFlow.Domain.Handlers
       match,
       "User logged in!",
       Notifications,
-      user.Id
+      user.Id,
+      user
     );
     }
   }

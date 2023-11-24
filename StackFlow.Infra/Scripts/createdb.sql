@@ -3,7 +3,8 @@ CREATE TABLE [User](
   [Name] VARCHAR(255) NOT NULL,
   [Password] VARCHAR(89) NOT NULL,
   [AvailableBalance] MONEY NOT NULL,
-  [Document] VARCHAR(14) NOT NULL
+  [Document] VARCHAR(14) NOT NULL,
+  [Role] INT NOT NULL
 )
 
 CREATE TABLE [Stock](

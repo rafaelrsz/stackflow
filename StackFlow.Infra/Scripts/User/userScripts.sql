@@ -148,3 +148,13 @@ AS
 	THEN CAST(1 AS BIT)
 	ELSE CAST(0 AS BIT) END
 GO
+
+CREATE PROCEDURE [spDepositFounds]
+  @Id UNIQUEIDENTIFIER,
+  @Amount MONEY
+AS 
+BEGIN
+  UPDATE [USER]
+  SET AvailableBalance = AvailableBalance + @Amount
+  WHERE Id = @Id
+END

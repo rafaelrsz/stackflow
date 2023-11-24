@@ -16,6 +16,29 @@
       asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
   </environment>
+
+  <link href="https://cdn.boldreports.com/5.3.8/content/material/bold.reports.all.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!--Render the gauge item. Add this script only if your report contains the gauge report item. -->
+  <script src="https://cdn.boldreports.com/5.3.8/scripts/common/ej2-base.min.js"></script>
+  <script src="https://cdn.boldreports.com/5.3.8/scripts/common/ej2-data.min.js"></script>
+  <script src="https://cdn.boldreports.com/5.3.8/scripts/common/ej2-pdf-export.min.js"></script>
+  <script src="https://cdn.boldreports.com/5.3.8/scripts/common/ej2-svg-base.min.js"></script>
+  <script src="https://cdn.boldreports.com/5.3.8/scripts/data-visualization/ej2-lineargauge.min.js"></script>
+  <script src="https://cdn.boldreports.com/5.3.8/scripts/data-visualization/ej2-circulargauge.min.js"></script>
+
+  <!--Render the map item. Add this script only if your report contains the map report item.-->
+  <script src="https://cdn.boldreports.com/5.3.8/scripts/data-visualization/ej2-maps.min.js"></script>
+
+  <script src="https://cdn.boldreports.com/5.3.8/scripts/common/bold.reports.common.min.js"></script>
+  <script src="https://cdn.boldreports.com/5.3.8/scripts/common/bold.reports.widgets.min.js"></script>
+
+  <!--Render the chart item. Add this script only if your report contains the chart report item.-->
+  <script src="https://cdn.boldreports.com/5.3.8/scripts/data-visualization/ej.chart.min.js"></script>
+
+  <!-- Report Viewer component script-->
+  <script src="https://cdn.boldreports.com/5.3.8/scripts/bold.report-viewer.min.js"></script>
 </head>
 
 <body>
@@ -32,9 +55,21 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><a asp-page="/Index">Home</a></li>
-          <li><a asp-page="/Stock">Ações</a></li>
+          <li><a href="/deposit">Depositar saldo</a></li>
+          <li><a href="/stock">Ações</a></li>
+          <li><a href="/stock/userstocks">Minhas Ações</a></li>
+          <li><a href="/user">Usuarios</a></li>
+          <li><a href="/transaction/report">Extrato</a></li>
         </ul>
+        @if (this.Context.Session.Get("UserName") != null)
+        {
+          <ul class="nav navbar-nav" style="float:right !important">
+            <li><a asp-page="/Index">@(this.Context.Session.GetString("UserName"))</a></li>
+            <li>
+              <a asp-page="/Stock">Saldo disponível: R$@(Double.Parse(Context.Session.GetString("UserFounds")))</a>
+            </li>
+          </ul>
+        }
       </div>
     </div>
   </nav>
@@ -49,24 +84,7 @@
     </footer>
   </div>
 
-  <environment include="Development">
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-  </environment>
-  <environment exclude="Development">
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-      asp-fallback-src="~/lib/jquery/dist/jquery.min.js" asp-fallback-test="window.jQuery" crossorigin="anonymous"
-      integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-      </script>
-    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-      asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-      asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal" crossorigin="anonymous"
-      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-      </script>
-    <script src="~/js/site.min.js" asp-append-version="true"></script>
-  </environment>
-
+  <bold-script-manager></bold-script-manager>
   @RenderSection("Scripts", required: false)
 </body>
 

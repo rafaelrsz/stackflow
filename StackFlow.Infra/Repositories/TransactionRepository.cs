@@ -49,6 +49,17 @@ namespace StackFlow.Infra.Repositories
             commandType: CommandType.StoredProcedure);
     }
 
+    public IEnumerable<ListStockReportQueryResult> GetTransactionsByUser(Guid userId)
+    {
+      return
+      _context
+        .Connection
+        .Query<ListStockReportQueryResult>(
+            "spGetTransactionsByUser",
+            new { userId = userId },
+            commandType: CommandType.StoredProcedure);
+    }
+
     public void Save(Transaction transaction, Guid userId)
     {
       _context

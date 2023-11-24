@@ -1,0 +1,55 @@
+@model StackFlow.Domain.Commands.User.Inputs.DepositFoundsCommand
+
+@{
+  ViewBag.Title = "Ações";
+  Layout = "_Layout";
+}
+
+</br>
+</br>
+<h2>Ações</h2>
+
+@* <p>
+@Html.ActionLink("Create New", "Create")
+</p> *@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<div class="row justify-content-md-center">
+  <div class="col-sm-12">
+    <h1>Informe seus dados, por favor</h1>
+    <hr />
+    @using (Html.BeginForm("Verify", "Deposit", FormMethod.Post, new { @class = "mt-3" }))
+    {
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <fieldset>
+            <legend>Saldo a ser depositado</legend>
+            <div class="form-group">
+              @Html.DisplayNameFor(model => model.Amount)
+              @Html.TextBoxFor(m => m.Amount, new
+                {
+                  @class = "form-control col-12",
+                  @placeholder = "Insira a quantidade",
+                  @required = true,
+                  @type = "number",
+                  @step = "any"
+                })
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <hr />
+      <div class="form-group text-left">
+        <input type="submit" name="submit" value="Depositar" class="btn btn-primary" />
+      </div>
+    }
+  </div>
+</div>

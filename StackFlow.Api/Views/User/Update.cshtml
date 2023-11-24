@@ -1,0 +1,66 @@
+@page
+@model StackFlow.Domain.Commands.User.Inputs.UpdateUserCommand
+
+@{
+  Layout = "_Layout";
+  ViewBag.Title = "Novo Usuário";
+}
+
+
+</br>
+</br>
+</br>
+</br>
+</br>
+<div class="row justify-content-md-center">
+  <div class="col-sm-12">
+    <h1>Informe seus dados, por favor</h1>
+    <hr />
+    @using (Html.BeginForm("Verify", "Update", FormMethod.Post, new { @class = "mt-3" }))
+    {
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <fieldset>
+            <legend>Dados Pessoais</legend>
+            <div class="form-group">
+              @Html.DisplayNameFor(model => model.Name)
+              @Html.TextBoxFor(m => m.Name, new
+                {
+                  @class = "form-control col-12",
+                  @placeholder = "Nome",
+                  @required = true
+                })
+            </div>
+            <div class="form-group">
+              @Html.DisplayNameFor(model => model.Document)
+              @Html.TextBoxFor(m => m.Document, new
+                {
+                  @class = "form-control col-12",
+                  @placeholder = "Documento (somente números)",
+                  @required = true
+                })
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Senha de Acesso</legend>
+            <div class="form-group">
+              @Html.DisplayNameFor(model => model.Password)
+              @Html.PasswordFor(m => m.Password, new
+                {
+                  @class = "form-control col-12",
+                  @placeholder = "Senha",
+                  @required = true
+                })
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <hr />
+      <div class="form-group text-left">
+        <a href="/login" class="btn btn-info">Já tenho cadastro</a>
+        <input type="submit" name="submit" value="Criar meu cadastro" class="btn btn-primary" />
+      </div>
+    }
+  </div>
+</div>

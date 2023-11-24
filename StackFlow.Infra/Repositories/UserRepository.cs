@@ -1,5 +1,6 @@
 using System.Data;
 using Dapper;
+using StackFlow.Domain.Commands.User.Inputs;
 using StackFlow.Domain.Entities;
 using StackFlow.Domain.Queries;
 using StackFlow.Domain.Repositories;
@@ -36,6 +37,20 @@ namespace StackFlow.Infra.Repositories
             id,
           },
           commandType: CommandType.StoredProcedure);
+    }
+
+    public void DepositFounds(DepositFoundsCommand command)
+    {
+      _context
+        .Connection
+        .Query<bool>(
+            "spDepositFounds",
+            new
+            {
+              command.Id,
+              command.Amount
+            },
+            commandType: CommandType.StoredProcedure);
     }
 
     public ListUserQueryResult Get(Guid id)
@@ -121,12 +136,7 @@ namespace StackFlow.Infra.Repositories
     public bool ValidateExclusion(Guid id)
     {
       return
-      _context
-        .Connection
-        .QueryFirstOrDefault(
-            "spValidateUserExclusion",
-            new { id },
-            commandType: CommandType.StoredProcedure);
+      true;
     }
   }
 }

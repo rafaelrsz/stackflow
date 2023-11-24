@@ -7,6 +7,8 @@ namespace StackFlow.Domain.Repositories
   {
     bool CheckSymbol(string symbol);
     ListStockQueryResult Get(Guid id);
+    IEnumerable<ListStockQueryResult> GetByUser(Guid userId);
+    Stock? GetFullStock(Guid id);
     IEnumerable<ListStockQueryResult> Get();
     void Save(Stock stock);
     void Delete(Guid id);

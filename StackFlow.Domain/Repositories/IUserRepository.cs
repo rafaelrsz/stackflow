@@ -1,3 +1,4 @@
+using StackFlow.Domain.Commands.User.Inputs;
 using StackFlow.Domain.Entities;
 using StackFlow.Domain.Queries;
 
@@ -14,5 +15,6 @@ namespace StackFlow.Domain.Repositories
     void Delete(Guid id);
     void Update(User user);
     bool ValidateExclusion(Guid id);
+    void DepositFounds(DepositFoundsCommand command);
   }
 }

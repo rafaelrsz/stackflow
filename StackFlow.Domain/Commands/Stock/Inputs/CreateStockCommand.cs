@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using FluentValidator;
 using FluentValidator.Validation;
 using StackFlow.Domain.Enums;
@@ -7,11 +8,16 @@ namespace StackFlow.Domain.Commands.Stock.Inputs
 {
   public class CreateStockCommand : Notifiable, ICommand
   {
+    [DisplayName("Nome")]
     public string Name { get; set; } = "";
+    [DisplayName("Sigla")]
     public string Symbol { get; set; } = "";
+    [DisplayName("Valor da unidade")]
     public double Price { get; set; }
     public ESector Sector { get; set; }
+    [DisplayName("Quantidade disponível")]
     public int AvailableQuantity { get; set; }
+    public Guid Id { get; set; }
 
     public bool Validate()
     {

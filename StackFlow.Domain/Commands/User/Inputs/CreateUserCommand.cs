@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using FluentValidator;
 using FluentValidator.Validation;
 using StackFlow.Domain.Enums;
@@ -8,10 +9,14 @@ namespace StackFlow.Domain.Commands.User.Inputs
 {
   public class CreateUserCommand : Notifiable, ICommand
   {
+    [DisplayName("Nome")]
     public string Name { get; set; } = "";
+
+    [DisplayName("Senha")]
     public string Password { get; set; } = "";
+
+    [DisplayName("Documento")]
     public string Document { get; set; } = "";
-    public ERole Role { get; set; }
 
     public bool Validate()
     {

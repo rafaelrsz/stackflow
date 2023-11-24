@@ -38,18 +38,7 @@
 </head>
 <body>
 
-    <div id="login">
-                      @if (ViewBag.IsSuccess == false)
-          {
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  <strong>Congratulations</strong> You have added new book successfully. <br />
-                  Click <a asp-controller="Book" asp-action="GetBook" asp-route-id="@ViewBag.BookId">here</a> to view the details
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-          }
-      
+    <div id="login">      
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
@@ -66,6 +55,8 @@
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="Entrar">
+                                <a href="/register">
+                                <input type="button" asp-controller="User" asp-action="Register" class="btn btn-info btn-md" value="Cadastrar"></a>
                             </div>
                         }
                         <div style="color:red;">@ViewBag.message</div>
